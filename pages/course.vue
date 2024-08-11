@@ -20,9 +20,10 @@
           <h3>{{ chapter.title }}</h3>
           <NuxtLink
             class="flex flex-row space-x-2 no-underline prose-sm font-normal py-1 px-4 -mx-4"
+            :class="{'text-blue-500': lesson.path === $route.fullPath}"
             v-for="(lesson, index) in chapter.lessons"
             :key="lesson.slug"
-            :to="`/course/chapter/${chapter.slug}/lesson/${lesson.slug}`"
+            :to="lesson.path"
           >
             <span class="text-gray-500">{{ index + 1 }}. </span>
             <span>{{ lesson.title }}</span>
@@ -40,4 +41,6 @@
 <script setup lang="ts">
 import { useCourse } from "~/composable/Course";
 const course = useCourse();
+const route = useRoute()
+console.log(route.fullPath)
 </script>
