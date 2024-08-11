@@ -19,9 +19,9 @@
         <!-- All the lessons for the course listed here -->
       </div>
 
-      <div class="prose p-12 bg-white rounded-md w-[65ch]">
+      <div class="prose p-12  bg-pink-200 rounded-md w-[1400px]">
         <NuxtPage/>
-      </div>
+      </div>  
     </div>
   </div>
 </template>
