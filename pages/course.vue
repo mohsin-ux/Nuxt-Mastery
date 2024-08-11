@@ -13,13 +13,13 @@
 
     <div class="flex flex-row justify-center flex-grow">
       <div
-        class="prose mr-4 p-8 bg-white rounded-md w-[40ch] flex flex-col"
+        class="prose mr-4 p-8 bg-white rounded-md w-[35ch] flex flex-col"
       >
         <h3>Chapters</h3>
         <div class="flex flex-col" v-for="chapter in course.chapters" :key="chapter.slug">
           <h3>{{ chapter.title }}</h3>
           <NuxtLink
-            class="no-underline"
+            class="flex flex-row space-x-2 no-underline prose-sm font-normal py-1 px-4 -mx-4"
             v-for="(lesson, index) in chapter.lessons"
             :key="lesson.slug"
             :to="`/course/chapter/${chapter.slug}/lesson/${lesson.slug}`"
