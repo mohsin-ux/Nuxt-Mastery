@@ -16,6 +16,8 @@
   "devDependencies": {
     "@nuxtjs/tailwindcss": "6.12.2-1722531999.1be5497",
     "@tailwindcss/typography": "^0.5.14",
+    "@vueuse/core": "^10.11.1",
+    "@vueuse/nuxt": "^10.11.1",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.9"
