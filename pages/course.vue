@@ -13,34 +13,18 @@
 
     <div class="flex flex-row justify-center flex-grow">
       <div
-        class="prose mr-4 p-8 bg-white rounded-md w-[35ch] flex flex-col"
+        class="prose mr-4 p-8 bg-white rounded-md min-w-[20ch] flex flex-col"
       >
         <h3>Chapters</h3>
-        <div class="flex flex-col" v-for="chapter in course.chapters" :key="chapter.slug">
-          <h3>{{ chapter.title }}</h3>
-          <NuxtLink
-            class="flex flex-row space-x-2 no-underline prose-sm font-normal py-1 px-4 -mx-4"
-            :class="{'text-blue-500': lesson.path === $route.fullPath}"
-            v-for="(lesson, index) in chapter.lessons"
-            :key="lesson.slug"
-            :to="lesson.path"
-          >
-            <span class="text-gray-500">{{ index + 1 }}. </span>
-            <span>{{ lesson.title }}</span>
-          </NuxtLink>
-        </div>
+        <!-- All the lessons for the course listed here -->
       </div>
 
-      <div class="prose p-12 bg-pink-200 rounded-md w-[70ch]">
-        <NuxtPage />
+      <div class="prose p-12 bg-white rounded-md w-[65ch]">
+        <h2>Lesson</h2>
+        <p>This is a lesson</p>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { useCourse } from "~/composable/Course";
-const course = useCourse();
-const route = useRoute()
-console.log(route.fullPath)
-</script>
+<script></script>
