@@ -4,16 +4,11 @@ import { useCourse } from "~/composable/Course";
 const route = useRoute();
 const course = useCourse();
 
-console.log(course);
-// console.log(route.params);
-
 const chapter = computed(() => {
   return course.chapters.find(
     (chapter) => chapter.slug === route.params.chapterSlug
   );
 });
-// console.log(chapter);
-// console.log(chapter.value);
 
 const lesson = computed(() => {
   return chapter.value?.lessons.find(
@@ -29,33 +24,29 @@ useHead({
 });
 //////////// using useState() composable for saving the values uniquely
 
-const progress: Ref<boolean[][]> = useState("progress", () => {
-  return [];
-});
-console.log(progress.value);
+const progress: Ref<boolean[][]> = useLocalStorage("progress", []);
 
-const chapterNo = computed(() => chapter.value?.number)
-const lessonNo = computed(() => lesson.value?.number)
-console.log(`${chapterNo.value}- ${lessonNo.value}`)
+const chapterNo = computed(() => chapter.value?.number);
+const lessonNo = computed(() => lesson.value?.number);
+console.log(`${chapterNo.value}- ${lessonNo.value}`);
 
 const isLessonComplete = computed(() => {
   if (chapterNo.value === undefined || lessonNo.value === undefined) {
     return false;
   }
-  console.log(progress.value[chapterNo.value - 1])
+  console.log(progress.value[chapterNo.value - 1]);
+
   if (!progress.value[chapterNo.value - 1]) {
     return false;
   }
 
-  if (  
-    !progress.value[chapterNo.value - 1][lessonNo.value - 1]
-  ) {
+  if (!progress.value[chapterNo.value - 1][lessonNo.value - 1]) {
     return false;
   }
 
-  return progress.value[chapterNo.value - 1][
-    lessonNo.value - 1
-  ];
+  console.log(progress.value[chapterNo.value - 1][lessonNo.value - 1]);
+  console.log(progress.value);
+  return progress.value[chapterNo.value - 1][lessonNo.value - 1];
 });
 
 const toggleComplete = () => {
@@ -65,12 +56,11 @@ const toggleComplete = () => {
   if (!progress.value[chapterNo.value - 1]) {
     progress.value[chapterNo.value - 1] = [];
   }
-
-  progress.value[chapterNo.value  - 1][
-    lessonNo.value - 1
-  ] = !isLessonComplete.value
+  console.log(isLessonComplete.value);
+  progress.value[chapterNo.value - 1][lessonNo.value - 1] =
+    !isLessonComplete.value;
+  console.log(isLessonComplete.value);
 };
-// console.log(lesson.value);
 </script>
 
 <template>
@@ -97,9 +87,11 @@ const toggleComplete = () => {
     </div>
     <VideoPlayer v-if="lesson?.videoId" :videoId="lesson.videoId" />
     <p>{{ lesson?.text }}</p>
-    <LessonCompleteButton
-      :model-value="isLessonComplete"
-      @update:model-value="toggleComplete"
-    />
+    <!-- <ClientOnly> -->
+      <LessonCompleteButton
+        :model-value="isLessonComplete"
+        @update:model-value="toggleComplete"
+      />
+    <!-- </ClientOnly> -->
   </div>
 </template>

@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 const props = defineProps({
   modelValue: {
@@ -7,31 +6,20 @@ const props = defineProps({
   },
 });
 
-defineEmits<{ (e: "update:modelValue", message: boolean): void }>();
+defineEmits<{ (e: "update:modelValue"): void }>();
 </script>
-
-<style scoped>
-::selection {
-  display: none;
-}
-</style>
 
 <template>
   <label
     class="rounded text-white font-bold py-2 px-4 cursor-pointer"
-    :class="{
-      'bg-green-500': props.modelValue,
-      'bg-gray-500': !props.modelValue,
-    }"
+    :class="props.modelValue ? 'bg-green-500' : 'bg-gray-500'"
   >
     <input
       type="checkbox"
       :value="props.modelValue"
-      @input="() => $emit('update:modelValue', !props.modelValue)"
+      @input="() => $emit('update:modelValue')"
       class="hidden"
     />
     {{ props.modelValue ? "Completed!" : "Mark as complete" }}
   </label>
 </template>
-
-
