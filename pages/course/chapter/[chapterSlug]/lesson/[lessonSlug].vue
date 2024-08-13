@@ -54,7 +54,7 @@ const isLessonComplete = computed(() => {
   }
 
   return progress.value[chapterNo.value - 1][
-    lessonNo.value - 1te
+    lessonNo.value - 1
   ];
 });
 
