@@ -3,6 +3,7 @@ import { useCourse } from "~/composable/Course";
 
 const route = useRoute();
 const course = useCourse();
+console.log(course)
 
 const chapter = computed(() => {
   return course.chapters.find(
