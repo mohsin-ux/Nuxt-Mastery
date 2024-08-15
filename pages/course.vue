@@ -1,3 +1,17 @@
+<script setup lang="ts">
+import { useCourse } from "~/composable/Course";
+const course = useCourse();
+const route = useRoute();
+
+// console.log(route.fullPath);
+async function resetButton(error: any) {
+  throw createError({
+    fatal: true,
+      message: 'Fatal Error is showing to you by mohsin raaziii'
+  })
+}
+</script>
+
 <template>
   <div
     class="p-12 bg-gray-100 w-full h-full min-h-screen flex flex-col items-center"
@@ -55,13 +69,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useCourse } from "~/composable/Course";
-const course = useCourse();
-const route = useRoute();
-// console.log(route.fullPath);
-function resetButton(error: any){
-  error.value = null
-};
-</script>

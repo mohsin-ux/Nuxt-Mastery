@@ -4,12 +4,19 @@ import { useCourse } from "~/composable/Course";
 const route = useRoute();
 const course = useCourse();
 console.log(course);
+// if (route.params.lessonSlug === "3-typing-component-events") {
+//   console.log(route.params.paramThatDoesNotExist.capitalizeIsNotMethod());
+// }
 
 const chapter = computed(() => {
   return course.chapters.find(
     (chapter) => chapter.slug === route.params.chapterSlug
   );
 });
+
+if (!chapter.value) {
+  throw console.error();
+}
 
 const lesson = computed(() => {
   return chapter.value?.lessons.find(
