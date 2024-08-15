@@ -12,15 +12,17 @@
     </div>
 
     <div class="flex flex-row justify-center flex-grow">
-      <div
-        class="prose mr-4 p-8 bg-white rounded-md w-[35ch] flex flex-col"
-      >
+      <div class="prose mr-4 p-8 bg-white rounded-md w-[35ch] flex flex-col">
         <h3>Chapters</h3>
-        <div class="flex flex-col" v-for="chapter in course.chapters" :key="chapter.slug">
+        <div
+          class="flex flex-col"
+          v-for="chapter in course.chapters"
+          :key="chapter.slug"
+        >
           <h3>{{ chapter.title }}</h3>
           <NuxtLink
             class="flex flex-row space-x-2 no-underline prose-sm font-normal py-1 px-4 -mx-4"
-            :class="{'text-blue-500': lesson.path === $route.fullPath}"
+            :class="{ 'text-blue-500': lesson.path === $route.fullPath }"
             v-for="(lesson, index) in chapter.lessons"
             :key="lesson.slug"
             :to="lesson.path"
@@ -32,7 +34,23 @@
       </div>
 
       <div class="prose p-12 bg-pink-200 rounded-md w-[70ch]">
-        <NuxtPage />
+        <NuxtErrorBoundary>
+          <NuxtPage />
+          <template #error="{ error }">
+            <p>
+              Oh no! something broke!
+              <code>{{ error }}</code>
+            </p>
+            <p>
+              <button
+                @click="resetButton(error)"
+                class="hover:cursor-pointer bg-gray-500 text-white font-bold py-1 px-3 rounded-md"
+              >
+                Reset
+              </button>
+            </p>
+          </template>
+        </NuxtErrorBoundary>
       </div>
     </div>
   </div>
@@ -41,6 +59,9 @@
 <script setup lang="ts">
 import { useCourse } from "~/composable/Course";
 const course = useCourse();
-const route = useRoute()
-console.log(route.fullPath)
+const route = useRoute();
+// console.log(route.fullPath);
+function resetButton(error: any){
+  error.value = null
+};
 </script>

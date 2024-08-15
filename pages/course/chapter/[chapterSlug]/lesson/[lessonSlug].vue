@@ -3,7 +3,7 @@ import { useCourse } from "~/composable/Course";
 
 const route = useRoute();
 const course = useCourse();
-console.log(course)
+console.log(course);
 
 const chapter = computed(() => {
   return course.chapters.find(
@@ -89,10 +89,10 @@ const toggleComplete = () => {
     <VideoPlayer v-if="lesson?.videoId" :videoId="lesson.videoId" />
     <p>{{ lesson?.text }}</p>
     <!-- <ClientOnly> -->
-      <LessonCompleteButton
-        :model-value="isLessonComplete"
-        @update:model-value="toggleComplete"
-      />
+    <LessonCompleteButton
+      :model-value="isLessonComplete"
+      @update:model-value="throw createError('Could not update');"
+    />
     <!-- </ClientOnly> -->
   </div>
 </template>
