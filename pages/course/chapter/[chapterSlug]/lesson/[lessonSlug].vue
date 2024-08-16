@@ -3,7 +3,7 @@ import { useCourse } from "~/composable/Course";
 
 const route = useRoute();
 const course = useCourse();
-console.log(course);
+
 // if (route.params.lessonSlug === "3-typing-component-events") {
 //   console.log(route.params.paramThatDoesNotExist.capitalizeIsNotMethod());
 // }
@@ -15,14 +15,24 @@ const chapter = computed(() => {
 });
 
 if (!chapter.value) {
-  throw console.error();
-}
+  throw createError({
+    statusCode: 404,
+    message: "Chapter not found... kindly fix the error",
+  });
+} 
 
 const lesson = computed(() => {
   return chapter.value?.lessons.find(
     (lesson) => lesson.slug === route.params.lessonSlug
   );
 });
+if (!lesson.value) {
+  throw createError({
+    statusCode: 404,
+    message: "Lesson not found... kindly fix the error",
+  });
+}
+
 /////////// using useHead composable for setting the title of the page
 const title = computed(() => {
   return `${lesson.value?.title}-${course.title}`;

@@ -7,8 +7,8 @@ const route = useRoute();
 async function resetButton(error: any) {
   throw createError({
     fatal: true,
-      message: 'Fatal Error is showing to you by mohsin raaziii'
-  })
+    message: "Fatal Error is showing to you by mohsin raaziii",
+  });
 }
 </script>
 
