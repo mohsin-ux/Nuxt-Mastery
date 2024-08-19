@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useCourse } from "~/composable/Course";
 const course = useCourse();
-const route = useRoute();
+// const route = useRoute();
 
 // console.log(route.fullPath);
 async function resetButton(error: any) {
@@ -13,20 +13,19 @@ async function resetButton(error: any) {
 </script>
 
 <template>
-  <div
+  <main
     class="p-12 bg-gray-100 w-full h-full min-h-screen flex flex-col items-center"
   >
     <div class="prose mb-12">
       <h1>
         <span class="font-medium">
-          Course:
-          <span class="font-bold">Mastering Nuxt 3</span>
+          <span class="font-bold">{{ course.title }}</span>
         </span>
       </h1>
     </div>
 
     <div class="flex flex-row justify-center flex-grow">
-      <div class="prose mr-4 p-8 bg-white rounded-md w-[35ch] flex flex-col">
+      <aside class="prose mr-4 p-8 bg-white rounded-md w-[35ch] flex flex-col">
         <h3>Chapters</h3>
         <div
           class="flex flex-col"
@@ -45,9 +44,9 @@ async function resetButton(error: any) {
             <span>{{ lesson.title }}</span>
           </NuxtLink>
         </div>
-      </div>
+      </aside>
 
-      <div class="prose p-12 bg-pink-200 rounded-md w-[70ch]">
+      <section class="prose p-12 bg-pink-200 rounded-md w-[70ch]">
         <NuxtErrorBoundary>
           <NuxtPage />
           <template #error="{ error }">
@@ -65,7 +64,7 @@ async function resetButton(error: any) {
             </p>
           </template>
         </NuxtErrorBoundary>
-      </div>
+      </section>
     </div>
-  </div>
+  </main>
 </template>
