@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { useCourse } from "~/composable/Course";
-
-const route = useRoute();
-const course = useCourse();
-
 definePageMeta({
   middleware: ["create-error", "auth"],
 });
+const route = useRoute();
+const course = useCourse();
 
 const chapter = computed(() => {
   return course.chapters.find(
@@ -14,24 +12,24 @@ const chapter = computed(() => {
   );
 });
 
-// if (!chapter.value) {
-//   throw createError({
-//     statusCode: 404,
-//     message: "Chapter not found... kindly fix the error",
-//   });
-// }
+if (!chapter.value) {
+  throw createError({
+    statusCode: 404,
+    message: "Chapter not found... kindly fix the error",
+  });
+}
 
 const lesson = computed(() => {
   return chapter.value?.lessons.find(
     (lesson) => lesson.slug === route.params.lessonSlug
   );
 });
-// if (!lesson.value) {
-//   throw createError({
-//     statusCode: 404,
-//     message: "Lesson not found... kindly fix the error",
-//   });
-// }
+if (!lesson.value) {
+  throw createError({
+    statusCode: 404,
+    message: "Lesson not found... kindly fix the error",
+  });
+}
 
 /////////// using useHead composable for setting the title of the page
 const title = computed(() => {

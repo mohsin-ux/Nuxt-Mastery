@@ -1,5 +1,5 @@
 // import Course from "~/pages/course.vue";
-import courseData from "./courseData.js";
+import courseData from "../server/courseData.js";
 
 type Lesson = {
   title: string;

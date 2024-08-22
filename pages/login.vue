@@ -3,14 +3,31 @@ import { useCourse } from "~/composable/Course";
 import constants from "~/constants";
 
 const { title } = useCourse();
-const {$supabase} = useNuxtApp()
+const { $supabase } = useNuxtApp();
+const {data}: any = $supabase.auth.getUser()
+// const user = ref(data.user)
+  const {query} = useRoute()
+  console.log(`hello query parameters  ${query.redirectTo}`)
+  // console.log(`${window.location.origin}`)
 
+
+
+watchEffect(async () => {
+  if(data?.user){
+    await navigateTo(query.redirectTo as string, {
+      replace: true,
+    })
+  }
+})
+ 
 async function login() {
+  const redirectTo = `${query.redirectTo}`
+  console.log(redirectTo)
   const { error } = await $supabase.auth.signInWithOAuth({
     provider: "github",
-    // options: {
-    //   redirectTo: "/course/chapter/1-chapter-1/lesson/1-introduction-to-typescript-with-vue-js-3",
-    // },
+    options: {
+      redirectTo
+    },
   });
   if (error) {
     console.log(error);
@@ -29,4 +46,3 @@ async function login() {
     </button>
   </div>
 </template>
-  
