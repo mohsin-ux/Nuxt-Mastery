@@ -11,16 +11,16 @@ function handleError() {
 <template>
   <NuxtLayout>
     <div class="text-center flex flex-col">
-      <div v-if="error.statusCode === 404" class="prose text-center mt-10">
+      <div v-if="error.statusCode === 404" class="text-center mt-10">
         <h1>404</h1>
         <p>I guess that page does not exist</p>
       </div>
-      <div v-else class="prose text-center mt-10">
+      <div v-else class="text-center mt-10">
         <h1>Dang</h1>
         <p>It looks like something wrong</p>
         <p>Sorry about that.</p>
       </div>
-      <div class="prose mt-5">
+      <div class="mt-5">
         <p>
           <strong>
             {{ error.message }}

@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { useCourse } from "~/composable/Course";
 const course = useCourse();
-// const route = useRoute();
 
-// console.log(route.fullPath);
+
 async function resetButton(error: any) {
   throw createError({
     fatal: true,
@@ -15,13 +14,16 @@ async function resetButton(error: any) {
 <template>
   <main
     class="p-12 bg-gray-100 w-full h-full min-h-screen flex flex-col items-center"
-  >
-    <div class="prose mb-12">
-      <h1>
-        <span class="font-medium">
-          <span class="font-bold">{{ course.title }}</span>
-        </span>
-      </h1>
+  > 
+    <div
+      class="mb-4 flex justify-between items-center w-full mx-auto"
+    >
+      <h1 class="prose text-center w-1/2 font-bold text-2xl">{{ course.title }}</h1>
+
+      <!--================== component -->
+      <div class="w-1/2 flex justify-center">
+        <UserCard />
+      </div>
     </div>
 
     <div class="flex flex-row justify-center flex-grow">

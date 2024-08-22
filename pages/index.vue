@@ -4,7 +4,7 @@ const firstLesson = useFirstLesson();
 </script>
 
 <template>
-  <div class=" text-center py-10">
+  <div class="text-center py-10">
     <NuxtLink
       class="underline font-medium prose text-3xl"
       :href="firstLesson.path"

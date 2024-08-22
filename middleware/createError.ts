@@ -1,7 +1,6 @@
 import { useCourse } from "~/composable/Course";
 export default defineNuxtRouteMiddleware((to, from) => {
   const course = useCourse();
-//   const route = useRoute()
 
   const chapter = course.chapters.find(
     (chapter) => chapter.slug === to.params.chapterSlug
