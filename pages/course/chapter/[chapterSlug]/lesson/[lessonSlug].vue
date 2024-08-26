@@ -3,11 +3,11 @@ import { useCourse } from "~/composable/Course";
 import { useLesson } from "~/composable/Lesson";
 const route = useRoute();
 const course = useCourse();
-const lessonData = ref();
+// const lessonData = ref();
 
 const { chapterSlug, lessonSlug } = route.params;
 
-lessonData.value = await useLesson(chapterSlug, lessonSlug);
+const lessonData = await useLesson(chapterSlug, lessonSlug);
 
 console.log(`${chapterSlug}, ${lessonSlug}`);
 console.log(`data in the lesson component ${lessonData.value}`);
@@ -85,29 +85,29 @@ const toggleComplete = () => {
 </script>
 
 <template>
-  <div><strong>sultan is comming</strong>{{ lessonData.value.videoId }}</div>
+  <!-- <div><strong>sultan is comming</strong>{{ lessonData.videoId }}</div> -->
   <div>
     <p class="mt-0 uppercase font-bold text-slate-400 mb-1">
-      Lesson {{ chapterData?.number }} - {{ lesson?.number }}
+      Lesson {{ chapter?.number }} - {{ lesson?.number }}
     </p>
-    <h2 class="my-0">{{ lessonData?.path }}</h2>
+    <h2 class="my-0">{{ lessonData.title }}</h2>
     <div class="flex space-x-4 mt-2 mb-8">
       <NuxtLink
         v-if="lesson?.sourceUrl"
         class="font-normal text-md text-gray-500"
-        :to="lessonData.value.sourceUrl"
+        :to="lessonData.sourceUrl"
       >
         Download Source Code
       </NuxtLink>
       <NuxtLink
         v-if="lesson?.downloadUrl"
         class="font-normal text-md text-gray-500"
-        :to="lessonData.value.downloadUrl"
+        :to="lessonData.downloadUrl"
       >
         Download Video
       </NuxtLink>
     </div>
-    <VideoPlayer v-if="lessonData.value?.videoId" :videoId="lessonData.value.videoId" />
+    <VideoPlayer v-if="lessonData.videoId" :videoId="lessonData.videoId" />
     <p>{{ lesson?.text }}</p>
     <!-- <ClientOnly> -->
     <LessonCompleteButton
