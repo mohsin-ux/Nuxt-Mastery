@@ -11,7 +11,14 @@ export const useLesson = async (
   });
 
   if (!lesson.value) {
-    const { data, error } = await useFetch<LessonWithPath>(url);
+    const { data, error } = await useFetch<LessonWithPath>(
+      url,
+      {
+        key: 'kdsjfklsdjfklsdj',
+        pick: ['title', 'slug'],
+        lazy: true,
+      }
+    );
 
     // console.log(`data to be fetched ${data.value}`);
     if (error.value) {
