@@ -14,7 +14,7 @@ function handleError() {
       <div v-if="error.statusCode === 404" class="text-center mt-10">
         <h1>404</h1>
         <p>I guess that page does not exist</p>
-      </div>
+      </div>  
       <div v-else class="text-center mt-10">
         <h1>Dang</h1>
         <p>It looks like something wrong</p>
@@ -25,11 +25,12 @@ function handleError() {
           <strong>
             {{ error.message }}
           </strong>
+          {{ error.statusCode }}
         </p>
         <p>
           Go to the
-          <a class="hover:cursor-pointer" @click="handleError">first lesson.</a>
-        </p>
+          <a class="hover:cursor-pointer underline text-sky-600" @click="handleError">first lesson.</a>
+        </p>  
       </div>
     </div>
   </NuxtLayout>

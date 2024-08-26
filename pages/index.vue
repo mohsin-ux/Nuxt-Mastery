@@ -9,7 +9,7 @@ const firstLesson = useFirstLesson();
       class="underline font-medium prose text-3xl"
       :href="firstLesson.path"
     >
-      Go to the first Lessonx
+      Go to the first Lesson
     </NuxtLink>
   </div>
 </template>
